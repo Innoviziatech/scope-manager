@@ -31,7 +31,7 @@ const UpdateStaffForm = () => {
         setPassword(doc.password);
         setConfirmPassword(doc.passwordConfirm);
       } catch (err) {
-        console.log(err);
+        console.log(err.response.data.message);
       }
     };
     fetchStaff();

@@ -44,7 +44,7 @@ const AddSectionForm = () => {
         navigate(`/new-subsection/${res.data.data._id}`);
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
       setLoading(false);
     }
     setSectionName("");

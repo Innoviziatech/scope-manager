@@ -1,7 +1,5 @@
 import { useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
-
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -35,7 +33,7 @@ const AddSectionForm = () => {
         navigate(`/new-subsection/${res.data.data._id}`);
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
       setLoading(false);
     }
 

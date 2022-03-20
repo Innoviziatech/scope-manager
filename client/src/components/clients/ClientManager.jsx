@@ -20,10 +20,13 @@ const ClientManager = () => {
         const res = await axios("/sm/api/clients");
         setClients(res.data.docs);
       } catch (err) {
-        console.log(err);
+        console.log(err.response.data.message);
       }
     };
     fetchClients();
+    return () => {
+      setClients([]);
+    };
   }, [refetch]);
 
   const handleUpdate = async (clientStatus, id) => {
@@ -33,7 +36,7 @@ const ClientManager = () => {
       });
       setRefetch(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
   const handleDelete = async (id) => {
@@ -41,7 +44,7 @@ const ClientManager = () => {
       await axios.delete(`/sm/api/clients/${id}`);
       setRefetch(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
   return (

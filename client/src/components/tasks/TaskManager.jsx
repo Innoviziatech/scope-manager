@@ -4,9 +4,7 @@ import Switch from "@mui/material/Switch";
 import axios from "axios";
 import PageHeader from "../pageHeader/PageHeader";
 import Table from "react-bootstrap/Table";
-import { MdModeEditOutline } from "react-icons/md";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
 import "./task.css";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoMdCall } from "react-icons/io";
@@ -22,10 +20,14 @@ const TaskManager = () => {
         const res = await axios("/sm/api/tasks");
         setTasks(res.data.docs);
       } catch (err) {
-        console.log(err);
+        console.log(err.response.data.message);
       }
     };
     fetchTasks();
+
+    return () => {
+      setTasks([]);
+    };
   }, [refetch]);
 
   const handleUpdate = async (clientStatus, id) => {
@@ -34,7 +36,7 @@ const TaskManager = () => {
         status: !clientStatus,
       });
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
 
@@ -43,7 +45,7 @@ const TaskManager = () => {
       await axios.delete(`/sm/api/tasks/${id}`);
       setRefetch(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
   return (

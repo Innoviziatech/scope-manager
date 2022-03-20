@@ -24,6 +24,10 @@ const ProjectManager = () => {
       }
     };
     fetchProjects();
+
+    return () => {
+      setProjects([]);
+    };
   }, [refetch]);
 
   const handleUpdate = async (projectStatus, id) => {
@@ -33,7 +37,7 @@ const ProjectManager = () => {
       });
       setRefetch(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
   const handleDelete = async (id) => {
@@ -41,7 +45,7 @@ const ProjectManager = () => {
       await axios.delete(`/sm/api/projects/${id}`);
       setRefetch(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
   return (

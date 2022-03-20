@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import Switch from "@mui/material/Switch";
 import { BsCheckLg, BsChevronDown } from "react-icons/bs";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
 import "./project.css";
-import SaveChanges from "../custombuttons/SaveChanges";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddProjectForm = () => {
   const [clients, setClients] = useState([]);
@@ -38,6 +36,10 @@ const AddProjectForm = () => {
       setClientState(clientObj);
     };
     fetchClients();
+
+    return () => {
+      setClients([]);
+    };
   }, []);
   useEffect(() => {
     const fetchStaff = async () => {
@@ -52,6 +54,9 @@ const AddProjectForm = () => {
     };
 
     fetchStaff();
+    return () => {
+      setStaff([]);
+    };
   }, []);
 
   const handleChangeStaff = (event) => {

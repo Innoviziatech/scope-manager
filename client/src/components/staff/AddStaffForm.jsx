@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -24,9 +23,8 @@ const AddStaffForm = () => {
         password,
         passwordConfirm: confirmPassword,
       });
-      console.log(res);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
 
     setRole("");

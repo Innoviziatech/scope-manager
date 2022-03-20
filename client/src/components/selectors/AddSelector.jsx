@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -22,7 +21,7 @@ const AddSelectorForm = ({ section }) => {
       });
       console.log(res);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
 
     setPrefferedOutput("");

@@ -22,9 +22,8 @@ const SingleProject = () => {
         const res = await axios(`/sm/api/projects/${projectId}`);
         setStatus(res.data.doc.status);
         setPages(res.data.doc.pages);
-        console.log(res);
       } catch (err) {
-        console.log(err);
+        console.log(err.response.data.message);
       }
     };
     fetchProject();
@@ -38,7 +37,7 @@ const SingleProject = () => {
       });
       setRefetch(true);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
 

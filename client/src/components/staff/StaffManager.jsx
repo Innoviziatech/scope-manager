@@ -21,6 +21,9 @@ const StaffManager = () => {
       }
     };
     fetchStaff();
+    return () => {
+      setStaff([]);
+    };
   }, [refetch]);
 
   const handleDelete = async (id) => {

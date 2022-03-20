@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import Switch from "@mui/material/Switch";
 import { BsChevronDown } from "react-icons/bs";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const AddTaskForm = () => {
@@ -35,6 +33,9 @@ const AddTaskForm = () => {
     };
 
     fetchProjects();
+    return () => {
+      setProjects([]);
+    };
   }, []);
 
   useEffect(() => {
@@ -61,7 +62,7 @@ const AddTaskForm = () => {
       });
       console.log(res);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
 
     setTask("");

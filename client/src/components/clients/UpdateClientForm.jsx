@@ -12,9 +12,7 @@ const UpdateClientForm = () => {
   const [role, setRole] = useState("Employee");
   const [clientLevel, setClientLevel] = useState("A");
   const [open, setOpen] = useState(false);
-
   const [status, setStatus] = useState(true);
-
   const [projects, setProjects] = useState([]);
 
   const [projectState, setProjectState] = useState([]);
@@ -105,7 +103,7 @@ const UpdateClientForm = () => {
       setCompanyName(res.data.doc.companyName);
       setClientLevel(res.data.doc.clientLevel);
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
     }
   };
 

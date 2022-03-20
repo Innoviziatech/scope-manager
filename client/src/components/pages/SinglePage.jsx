@@ -5,7 +5,6 @@ import PageHeader from "../pageHeader/PageHeader";
 import Table from "react-bootstrap/Table";
 import { MdModeEditOutline } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import SaveChanges from "../custombuttons/SaveChanges";
 import { BsPlusLg } from "react-icons/bs";
 
 const SinglePage = () => {
