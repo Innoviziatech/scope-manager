@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start:dev": "nodemon --watch backend --exec node --experimental-modules backend/server.js --ignore ./client",
-    "start:prod": "SET NODE_ENV=production&& nodemon backend/server.js ",
+    "start": "node backend/server.js ",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "ankit tripathi",
