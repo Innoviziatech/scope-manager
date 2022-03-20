@@ -97,16 +97,6 @@ const UpdateSelectorForm = ({ section }) => {
             />
           </div>
         </div>
-
-        <div className="row flex-between" style={{ marginTop: "6rem" }}>
-          <span></span>
-          <SaveChanges
-            title="Save and Add New"
-            icon="save"
-            page="selector"
-            submit={handleSubmitSection}
-          />
-        </div>
       </div>
     </div>
   );
