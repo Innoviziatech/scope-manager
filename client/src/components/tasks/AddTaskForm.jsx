@@ -45,6 +45,10 @@ const AddTaskForm = () => {
       setSelectedStaff(res.data.docs[0].name);
     };
     fetchStaff();
+
+    return () => {
+      setStaff([]);
+    };
   }, []);
 
   const handleSubmit = async () => {
@@ -60,7 +64,6 @@ const AddTaskForm = () => {
         category,
         responsibility: selectedStaff,
       });
-      console.log(res);
     } catch (err) {
       console.log(err.response.data.message);
     }
