@@ -75,9 +75,6 @@ app.use(
   })
 );
 
-app.use("/sm/api/greet", (req, res) => {
-  res.send("nvdvjdjv __dirname");
-});
 app.use("/sm/api/clients", clientRouter);
 app.use("/sm/api/projects", projectRouter);
 app.use("/sm/api/pages", pageRouter);
