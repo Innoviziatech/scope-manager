@@ -1,0 +1,8 @@
+.stepper {
+  margin-top: 2rem;
+}
+.stepper__steps {
+  max-width: 50%;
+  height: 100%;
+  background-color: green;
+}

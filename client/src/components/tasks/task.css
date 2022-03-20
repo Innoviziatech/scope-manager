@@ -1,0 +1,50 @@
+.taskManager .table-container {
+  width: 100%;
+}
+.taskManager .table {
+  width: 95%;
+}
+.taskManager__icons {
+  background-color: #fff;
+  padding: 3px 6px;
+  border-radius: 10rem;
+  margin-left: 2rem;
+  text-align: center;
+}
+.taskManager__icons svg:not(:last-child) {
+  margin-right: 5px;
+}
+
+.taskManager__icons svg {
+  margin-bottom: -0.3rem;
+}
+.addTask .select-title span {
+  background-color: var(--color-primary);
+  border-radius: 10rem;
+  padding: 0.3rem 1rem;
+  color: #fff;
+  margin-right: 2rem;
+}
+.addTask .checkbox-select {
+  min-width: 21rem;
+}
+.addTask .form-group label {
+  margin-bottom: 0.8rem;
+}
+.addTask input {
+  width: 90%;
+  max-width: 25rem;
+}
+
+.addTask .row {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.addTask .form-group {
+  margin-right: 2.5rem;
+}
+
+.addTask .description textarea {
+  width: 90%;
+}

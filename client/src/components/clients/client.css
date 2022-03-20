@@ -1,0 +1,156 @@
+.table-container {
+  padding: 1rem;
+}
+
+.addClient-inputs {
+  padding: 1rem;
+}
+.form-control {
+  flex: 0 0 30%;
+}
+.form-control input {
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10rem;
+  border: 1px solid rgb(218, 216, 216);
+}
+.row {
+  margin: 2rem;
+  padding: 1rem;
+  align-items: flex-start;
+}
+.addClient .form-group {
+  flex: 0 0 30%;
+}
+.radio {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.radio span {
+  margin-left: 1rem;
+  color: rgb(99, 98, 98);
+}
+input[type="radio"]:after {
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  outline: 2px solid #d1d3d1;
+  outline-offset: 2px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked:after {
+  width: 14px;
+  height: 14px;
+  border-radius: 14px;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: var(--color-primary);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+  cursor: pointer;
+}
+input[type="radio"]:checked ~ span {
+  color: var(--color-primary);
+}
+.form-group label {
+  margin-bottom: 1.7rem;
+}
+.checkbox-select {
+  height: 15rem;
+  min-width: fit-content;
+}
+.checkbox-container {
+  border: 1px solid rgb(199, 197, 197);
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+.checkboxes {
+  overflow-y: scroll;
+  max-height: 8rem;
+}
+
+.checkboxes::-webkit-scrollbar {
+  width: 0;
+}
+
+.select-title {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+}
+.checkbox:not(:last-child) {
+  margin-bottom: 0.7rem;
+}
+.checkbox input {
+  margin-right: 1rem;
+}
+.checkbox span {
+  color: var(--color-gray-1);
+}
+input[type="checkbox"]:checked + span {
+  color: var(--color-primary);
+  font-weight: 400;
+}
+
+.table-container {
+  width: 90%;
+  margin-top: 4rem;
+  font-size: 1.4rem;
+  border: 2px solid rgb(228, 225, 225);
+  border-radius: 1rem;
+  max-height: 40rem;
+  overflow-y: scroll;
+}
+
+.table {
+  min-width: 90%;
+  border-collapse: separate;
+  border-spacing: 0 1.5rem;
+}
+tr {
+  background-color: var(--color-hovered-1);
+  color: var(--color-primary);
+  font-weight: 400;
+}
+
+thead {
+  color: var(--color-gray-1);
+}
+td {
+  text-align: center;
+}
+
+td {
+  padding: 0.2rem 0px;
+  height: 4.5rem;
+}
+td:first-child {
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+td:last-child {
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+}

@@ -1,0 +1,50 @@
+.addproject-input-container {
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+.addproject-input-container > div {
+  flex: 1;
+}
+
+.addproject-input-container > div:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.addProject .checkbox-select {
+  max-width: 75%;
+  min-width: 20rem;
+}
+
+.special-case {
+  margin-left: -8%;
+}
+
+.addProject .form-control {
+  margin-bottom: 2rem;
+}
+
+.addProject .checkbox-container {
+  max-height: 20.2rem;
+}
+
+.addProject .form-group label {
+  margin-bottom: 0.7rem;
+}
+.description textarea {
+  max-height: 18rem;
+  border-radius: 1.5rem !important;
+  width: 100%;
+  min-height: 12rem;
+  resize: none;
+  border: 1px solid #dcdcdc;
+}
+.form-control {
+  position: relative;
+}
+.showPassword {
+  position: absolute;
+  top: 3.8rem;
+  right: 1rem;
+  color: var(--color-primary);
+  cursor: pointer;
+}

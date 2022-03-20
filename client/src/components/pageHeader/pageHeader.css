@@ -1,0 +1,12 @@
+.pageHeader {
+  width: 100%;
+}
+
+.pageHeader__content {
+  width: 55%;
+}
+
+.pageHeader h1 {
+  font-size: 2.8rem;
+  font-weight: 500;
+}
