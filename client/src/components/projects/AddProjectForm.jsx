@@ -25,7 +25,9 @@ const AddProjectForm = () => {
 
   useEffect(() => {
     const fetchClients = async () => {
-      const res = await axios("/sm/api/clients");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/clients"
+      );
       setClients(res.data.docs);
 
       const clientObj = res.data.docs.map((client) => ({
@@ -43,7 +45,9 @@ const AddProjectForm = () => {
   }, []);
   useEffect(() => {
     const fetchStaff = async () => {
-      const res = await axios("/sm/api/staff");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/staff"
+      );
       setStaff(res.data.docs);
       const staffObj = res.data.docs.map((staff) => ({
         [staff.name]: false,
@@ -91,13 +95,16 @@ const AddProjectForm = () => {
   const handleSubmit = async (page) => {
     setLoading(true);
     try {
-      const res = await axios.post("/sm/api/projects", {
-        projectName,
-        description,
-        clients: projectClients,
-        staff: staffs,
-        status,
-      });
+      const res = await axios.post(
+        "https://scope-manager.herokuapp.com/sm/api/projects",
+        {
+          projectName,
+          description,
+          clients: projectClients,
+          staff: staffs,
+          status,
+        }
+      );
       if (res.data.status === "success") {
         setLoading(false);
       }

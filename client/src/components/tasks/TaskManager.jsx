@@ -17,7 +17,9 @@ const TaskManager = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await axios("/sm/api/tasks");
+        const res = await axios(
+          "https://scope-manager.herokuapp.com/sm/api/tasks"
+        );
         setTasks(res.data.docs);
       } catch (err) {
         console.log(err.response.data.message);
@@ -32,9 +34,12 @@ const TaskManager = () => {
 
   const handleUpdate = async (clientStatus, id) => {
     try {
-      await axios.patch(`/sm/api/clients/${id}`, {
-        status: !clientStatus,
-      });
+      await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/clients/${id}`,
+        {
+          status: !clientStatus,
+        }
+      );
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -42,7 +47,9 @@ const TaskManager = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/sm/api/tasks/${id}`);
+      await axios.delete(
+        `https://scope-manager.herokuapp.com/sm/api/tasks/${id}`
+      );
       setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);

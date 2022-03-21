@@ -30,7 +30,9 @@ const UpdateClientForm = () => {
 
   useEffect(() => {
     const fetchClient = async () => {
-      const res = await axios(`/sm/api/clients/${clientId}`);
+      const res = await axios(
+        `https://scope-manager.herokuapp.com/sm/api/clients/${clientId}`
+      );
 
       setClient(res.data.doc);
       setClientName(res.data.doc.clientName);
@@ -47,7 +49,9 @@ const UpdateClientForm = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const res = await axios("/sm/api/projects");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/projects"
+      );
       setProjects(res.data.docs);
       const projectArray = res.data.docs.map((project) => ({
         [project.projectName]: false,

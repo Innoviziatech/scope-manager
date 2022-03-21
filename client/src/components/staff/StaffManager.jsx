@@ -14,7 +14,9 @@ const StaffManager = () => {
   useEffect(() => {
     const fetchStaff = async () => {
       try {
-        const res = await axios("/sm/api/staff");
+        const res = await axios(
+          "https://scope-manager.herokuapp.com/sm/api/staff"
+        );
         setStaff(res.data.docs);
       } catch (err) {
         console.log(err);
@@ -28,7 +30,9 @@ const StaffManager = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/sm/api/staff/${id}`);
+      await axios.delete(
+        `https://scope-manager.herokuapp.com/sm/api/staff/${id}`
+      );
       setRefetch(true);
     } catch (err) {
       console.log(err);

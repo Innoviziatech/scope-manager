@@ -28,7 +28,9 @@ const UpdateProjectForm = () => {
 
   useEffect(() => {
     const fetchProject = async () => {
-      const res = await axios(`/sm/api/projects/${projectId}`);
+      const res = await axios(
+        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`
+      );
       console.log(res);
       setProject(res.data.doc);
       setProjectName(res.data.doc.projectName);
@@ -40,7 +42,9 @@ const UpdateProjectForm = () => {
 
   useEffect(() => {
     const fetchClients = async () => {
-      const res = await axios("/sm/api/clients");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/clients"
+      );
       setClients(res.data.docs);
 
       const clientObj = res.data.docs.map((client) => ({
@@ -54,7 +58,9 @@ const UpdateProjectForm = () => {
   }, []);
   useEffect(() => {
     const fetchStaff = async () => {
-      const res = await axios("/sm/api/staff");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/staff"
+      );
       setStaff(res.data.docs);
       const staffObj = res.data.docs.map((staff) => ({
         [staff.name]: false,
@@ -116,12 +122,15 @@ const UpdateProjectForm = () => {
     });
 
     try {
-      const res = await axios.patch(`/sm/api/projects/${projectId}`, {
-        projectName,
-        clients: projectClients,
-        staff: staffs,
-        status,
-      });
+      const res = await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`,
+        {
+          projectName,
+          clients: projectClients,
+          staff: staffs,
+          status,
+        }
+      );
       setProject(res.data.doc);
       setProjectName(res.data.data.projectName);
       setStatus(res.data.data.status);

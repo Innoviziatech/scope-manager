@@ -19,7 +19,9 @@ const SingleProject = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios(`/sm/api/projects/${projectId}`);
+        const res = await axios(
+          `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`
+        );
         setStatus(res.data.doc.status);
         setPages(res.data.doc.pages);
       } catch (err) {
@@ -32,9 +34,12 @@ const SingleProject = () => {
   const handleUpdate = async () => {
     setStatus(!status);
     try {
-      await axios.patch(`/sm/api/projects/${projectId}`, {
-        status: !status,
-      });
+      await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`,
+        {
+          status: !status,
+        }
+      );
       setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);

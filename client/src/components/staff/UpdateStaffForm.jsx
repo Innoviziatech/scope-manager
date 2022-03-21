@@ -23,7 +23,9 @@ const UpdateStaffForm = () => {
       try {
         const {
           data: { doc },
-        } = await axios(`/sm/api/staff/${staffId}`);
+        } = await axios(
+          `https://scope-manager.herokuapp.com/sm/api/staff/${staffId}`
+        );
         setName(doc.name);
         setEmail(doc.email);
         setPosition(doc.position);
@@ -40,14 +42,17 @@ const UpdateStaffForm = () => {
     try {
       const {
         data: { doc },
-      } = await axios.patch(`/sm/api/staff/${staffId}`, {
-        name,
-        role,
-        position,
-        email,
-        password,
-        passwordConfirm: confirmPassword,
-      });
+      } = await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/staff/${staffId}`,
+        {
+          name,
+          role,
+          position,
+          email,
+          password,
+          passwordConfirm: confirmPassword,
+        }
+      );
 
       setRole(doc.role);
       setName(doc.name);

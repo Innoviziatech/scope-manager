@@ -18,7 +18,9 @@ const AddSectionForm = () => {
 
   useEffect(() => {
     const fetchSection = async () => {
-      const res = await axios(`/sm/api/sections/${sectionId}`);
+      const res = await axios(
+        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}`
+      );
       setSectionName(res.data.doc.sectionName);
       setDescription(res.data.doc.description);
     };
@@ -29,10 +31,13 @@ const AddSectionForm = () => {
     if (page === "subsection") setLoading(true);
     else if (page === "selector") setLoading(true);
     try {
-      const res = await axios.patch(`/sm/api/sections/${sectionId}`, {
-        sectionName,
-        description,
-      });
+      const res = await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}`,
+        {
+          sectionName,
+          description,
+        }
+      );
       if (res.data.status === "success" && page === "subsection") {
         setLoading(false);
       } else if (res.data.status === "success" && page === "selector") {

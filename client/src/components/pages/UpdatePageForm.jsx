@@ -23,7 +23,9 @@ const UpdatePageForm = () => {
   useEffect(() => {
     const fetchPage = async () => {
       try {
-        const res = await axios(`/sm/api/pages/${pageId}`);
+        const res = await axios(
+          `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}`
+        );
         console.log(res);
         setPageName(res.data.doc.pageName);
         setPageURL(res.data.doc.pageURL);
@@ -37,12 +39,15 @@ const UpdatePageForm = () => {
   }, [pageId]);
   const handleSubmit = async (page) => {
     try {
-      const res = await axios.patch(`/sm/api/pages/${pageId}`, {
-        pageName,
-        pageSequence,
-        pageURL,
-        status,
-      });
+      const res = await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}`,
+        {
+          pageName,
+          pageSequence,
+          pageURL,
+          status,
+        }
+      );
       if (res.data.status === "success") {
         setLoading(false);
       }

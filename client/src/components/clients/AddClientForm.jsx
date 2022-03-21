@@ -29,7 +29,9 @@ const AddClientForm = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const res = await axios("/sm/api/projects");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/projects"
+      );
       setProjects(res.data.docs);
       const projectArray = res.data.docs.map((project) => ({
         [project.projectName]: false,
@@ -62,17 +64,20 @@ const AddClientForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/sm/api/clients", {
-        clientName,
-        projects: clientProjects,
-        status,
-        companyName,
-        nationality,
-        role,
-        clientLevel,
-        mobile,
-        email,
-      });
+      const res = await axios.post(
+        "https://scope-manager.herokuapp.com/sm/api/clients",
+        {
+          clientName,
+          projects: clientProjects,
+          status,
+          companyName,
+          nationality,
+          role,
+          clientLevel,
+          mobile,
+          email,
+        }
+      );
     } catch (err) {
       console.log(err.response.data.message);
     }

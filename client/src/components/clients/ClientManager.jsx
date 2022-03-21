@@ -17,7 +17,9 @@ const ClientManager = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const res = await axios("/sm/api/clients");
+        const res = await axios(
+          "https://scope-manager.herokuapp.com/sm/api/clients"
+        );
         setClients(res.data.docs);
       } catch (err) {
         console.log(err.response.data.message);
@@ -31,9 +33,12 @@ const ClientManager = () => {
 
   const handleUpdate = async (clientStatus, id) => {
     try {
-      await axios.patch(`/sm/api/clients/${id}`, {
-        status: !clientStatus,
-      });
+      await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/clients/${id}`,
+        {
+          status: !clientStatus,
+        }
+      );
       setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);
@@ -41,7 +46,9 @@ const ClientManager = () => {
   };
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/sm/api/clients/${id}`);
+      await axios.delete(
+        `https://scope-manager.herokuapp.com/sm/api/clients/${id}`
+      );
       setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);

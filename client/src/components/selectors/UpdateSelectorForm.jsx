@@ -14,7 +14,9 @@ const UpdateSelectorForm = ({ section }) => {
 
   useEffect(() => {
     const fetchSection = async () => {
-      const res = await axios(`/sm/api/selectors/${selectorId}`);
+      const res = await axios(
+        `https://scope-manager.herokuapp.com/sm/api/selectors/${selectorId}`
+      );
       console.log(res);
       setSelectorName(res.data.doc.selectorName);
       setPrefferedInput(res.data.doc.prefferedInput);
@@ -25,11 +27,14 @@ const UpdateSelectorForm = ({ section }) => {
 
   const handleSubmitSection = async (page) => {
     try {
-      const res = await axios.patch(`/sm/api/selectors/${selectorId}`, {
-        prefferedInput,
-        prefferedOutput,
-        selectorName,
-      });
+      const res = await axios.patch(
+        `https://scope-manager.herokuapp.com/sm/api/selectors/${selectorId}`,
+        {
+          prefferedInput,
+          prefferedOutput,
+          selectorName,
+        }
+      );
       console.log(res);
     } catch (err) {
       console.log(err.response.data.message);
@@ -42,7 +47,7 @@ const UpdateSelectorForm = ({ section }) => {
   // const handleSubmitSubSection = async (page) => {
   //   try {
   //     const res = await axios.post(
-  //       `/sm/api/subSections/${subSectionId}/selectors`,
+  //       `https://scope-manager.herokuapp.com/sm/api/subSections/${subSectionId}/selectors`,
   //       {
   //         prefferedInput,
   //         prefferedOutput,

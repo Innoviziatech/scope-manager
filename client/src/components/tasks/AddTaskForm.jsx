@@ -27,7 +27,9 @@ const AddTaskForm = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const res = await axios("/sm/api/projects");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/projects"
+      );
       setProjects(res.data.docs);
       setSelectedProject(res.data.docs[0].projectName);
     };
@@ -40,7 +42,9 @@ const AddTaskForm = () => {
 
   useEffect(() => {
     const fetchStaff = async () => {
-      const res = await axios("/sm/api/staff");
+      const res = await axios(
+        "https://scope-manager.herokuapp.com/sm/api/staff"
+      );
       setStaff(res.data.docs);
       setSelectedStaff(res.data.docs[0].name);
     };
@@ -53,17 +57,20 @@ const AddTaskForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/sm/api/tasks", {
-        task,
-        project: selectedProject,
-        status,
-        minTime,
-        maxTime,
-        TT,
-        dueDate,
-        category,
-        responsibility: selectedStaff,
-      });
+      const res = await axios.post(
+        "https://scope-manager.herokuapp.com/sm/api/tasks",
+        {
+          task,
+          project: selectedProject,
+          status,
+          minTime,
+          maxTime,
+          TT,
+          dueDate,
+          category,
+          responsibility: selectedStaff,
+        }
+      );
     } catch (err) {
       console.log(err.response.data.message);
     }

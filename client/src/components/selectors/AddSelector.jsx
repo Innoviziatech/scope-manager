@@ -14,11 +14,14 @@ const AddSelectorForm = ({ section }) => {
 
   const handleSubmitSection = async (page) => {
     try {
-      const res = await axios.post(`/sm/api/sections/${sectionId}/selectors`, {
-        prefferedInput,
-        prefferedOutput,
-        selectorName,
-      });
+      const res = await axios.post(
+        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}/selectors`,
+        {
+          prefferedInput,
+          prefferedOutput,
+          selectorName,
+        }
+      );
       console.log(res);
     } catch (err) {
       console.log(err.response.data.message);
@@ -31,7 +34,7 @@ const AddSelectorForm = ({ section }) => {
   // const handleSubmitSubSection = async (page) => {
   //   try {
   //     const res = await axios.post(
-  //       `/sm/api/subSections/${subSectionId}/selectors`,
+  //       `https://scope-manager.herokuapp.com/sm/api/subSections/${subSectionId}/selectors`,
   //       {
   //         prefferedInput,
   //         prefferedOutput,

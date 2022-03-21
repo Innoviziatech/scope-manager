@@ -15,14 +15,17 @@ const AddStaffForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("/sm/api/staff", {
-        name,
-        role,
-        position,
-        email,
-        password,
-        passwordConfirm: confirmPassword,
-      });
+      const res = await axios.post(
+        "https://scope-manager.herokuapp.com/sm/api/staff",
+        {
+          name,
+          role,
+          position,
+          email,
+          password,
+          passwordConfirm: confirmPassword,
+        }
+      );
     } catch (err) {
       console.log(err.response.data.message);
     }

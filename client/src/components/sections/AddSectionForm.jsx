@@ -18,10 +18,13 @@ const AddSectionForm = () => {
     if (page === "subsection") setLoading(true);
     else if (page === "selector") setSelectorloading(true);
     try {
-      const res = await axios.post(`/sm/api/pages/${pageId}/sections`, {
-        sectionName,
-        description,
-      });
+      const res = await axios.post(
+        `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}/sections`,
+        {
+          sectionName,
+          description,
+        }
+      );
       if (res.data.status === "success" && page === "subsection") {
         setLoading(false);
       } else if (res.data.status === "success" && page === "selector") {

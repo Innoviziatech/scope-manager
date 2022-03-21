@@ -16,7 +16,9 @@ const SinglePage = () => {
   useEffect(() => {
     const fetchPage = async () => {
       try {
-        const res = await axios(`/sm/api/pages/${pageId}`);
+        const res = await axios(
+          `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}`
+        );
         console.log(res);
         setSections(res.data.doc.sections);
       } catch (err) {

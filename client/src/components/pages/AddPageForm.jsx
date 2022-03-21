@@ -23,12 +23,15 @@ const AddPageForm = () => {
 
   const handleSubmit = async (page) => {
     try {
-      const res = await axios.post(`/sm/api/projects/${projectId}/pages`, {
-        pageName,
-        pageSequence,
-        pageURL,
-        status,
-      });
+      const res = await axios.post(
+        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}/pages`,
+        {
+          pageName,
+          pageSequence,
+          pageURL,
+          status,
+        }
+      );
       if (res.data.status === "success") {
         setLoading(false);
       }
