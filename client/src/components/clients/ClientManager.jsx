@@ -39,7 +39,6 @@ const ClientManager = () => {
           status: !clientStatus,
         }
       );
-      setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);
     }

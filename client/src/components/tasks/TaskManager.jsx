@@ -32,12 +32,12 @@ const TaskManager = () => {
     };
   }, [refetch]);
 
-  const handleUpdate = async (clientStatus, id) => {
+  const handleUpdate = async (taskStatus, id) => {
     try {
       await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/clients/${id}`,
+        `https://scope-manager.herokuapp.com/sm/api/tasks/${id}`,
         {
-          status: !clientStatus,
+          status: !taskStatus,
         }
       );
     } catch (err) {

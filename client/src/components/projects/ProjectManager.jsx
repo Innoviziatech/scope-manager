@@ -40,7 +40,6 @@ const ProjectManager = () => {
           status: !projectStatus,
         }
       );
-      setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);
     }
