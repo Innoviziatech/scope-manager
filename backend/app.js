@@ -5,7 +5,6 @@ const cors = require("cors");
 // const compression = require("compression");
 const helmet = require("helmet");
 const hpp = require("hpp");
-// const cloudinary = require("cloudinary");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
@@ -28,6 +27,7 @@ app.enable("trust proxy");
 
 //! MIDDLEWARES ****************************
 app.use(cors());
+
 app.use(
   helmet.contentSecurityPolicy({
     useDefaults: true,
@@ -62,18 +62,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Prevent HTTP parameter pollution ,removes duplicate fields in query
-app.use(
-  hpp({
-    whitelist: [
-      "ratingsAverage",
-      "maxGuests",
-      "standard",
-      "rent",
-      "roomFor",
-      "ratingsQuantity",
-    ],
-  })
-);
+app.use(hpp());
 
 app.use("/sm/api/clients", clientRouter);
 app.use("/sm/api/projects", projectRouter);

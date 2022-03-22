@@ -1,22 +1,67 @@
 import { useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import Switch from "@mui/material/Switch";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
-import UploadScreenShot from "../custombuttons/UploadScreenShot";
 import { useNavigate, useParams } from "react-router-dom";
 import { BsCheckLg } from "react-icons/bs";
+import { BiUpload } from "react-icons/bi";
+
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+};
 
 const AddPageForm = () => {
   const [status, setStatus] = useState(false);
   const [pageURL, setPageURL] = useState("");
   const [pageSequence, setPageSequence] = useState("");
   const [pageName, setPageName] = useState("");
+  const [previewImgs, setPreviewImgs] = useState([]);
+  const [selectedImgs, setSelectedImgs] = useState([]);
   const [loading, setLoading] = useState(false);
   const { projectId } = useParams();
   const navigate = useNavigate();
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  // const handleUpload = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   if (selectedImg) formData.append("screenShots", selectedImg);
+  // };
+  const previewFile = (file) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setPreviewImgs(reader.result);
+      };
+    }
+  };
+
+  const handlePictureSelection = (e) => {
+    const file = e.target.files[0];
+    setPreviewImgs(file);
+
+    previewFile(file);
+
+    // setSelectedImg(file);
+  };
+  console.log(selectedImgs);
   const handleChange = (event) => {
     setStatus(event.target.checked);
   };
@@ -24,7 +69,7 @@ const AddPageForm = () => {
   const handleSubmit = async (page) => {
     try {
       const res = await axios.post(
-        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}/pages`,
+        `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}/pages`,
         {
           pageName,
           pageSequence,
@@ -97,11 +142,57 @@ const AddPageForm = () => {
         </div>
 
         <div className="row flex-between">
-          <UploadScreenShot
-            title="Upload"
-            onClick={() => console.log("screen shot")}
-          />
+          <div
+            className="btn saveChanges-btn flex-between"
+            onClick={handleOpen}
+          >
+            <span className="uploadScreenshot__title">Upload ScreenShot</span>
+            <span className="saveChanges-icon flex-center">
+              <BiUpload />
+            </span>
+          </div>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                <input
+                  type="file"
+                  id="upload-screenshot"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={handlePictureSelection}
+                />
+                <div className="row flex-between">
+                  <label htmlFor="upload-screenshot">
+                    <div className="btn saveChanges-btn flex-between">
+                      <span className="uploadScreenshot__title">
+                        Upload ScreenShot
+                      </span>
+                      <span className="saveChanges-icon flex-center">
+                        <BiUpload />
+                      </span>
+                    </div>
+                  </label>
+                </div>
+                <div className="preview__images">
+                  {/* {selectedImgs?.map((previewImg) => ( */}
+                  <img src={previewImgs} alt="" />
+                  {/* ))} */}
+                </div>
+              </Box>
+            </Fade>
+          </Modal>
         </div>
+
         <div className="row flex-between" style={{ marginTop: "6rem" }}>
           <span></span>
           <button

@@ -6,21 +6,22 @@ const {
   getPage,
   deletePage,
   setProjectId,
-  // uploadScreenShot,
-  // uploadScreenShotInCloud,
-  // upload,
+  uploadScreenShots,
+  uploadScreenShotsOnCloudinary,
 } = require("../controllers/pageController");
 const sectionRouter = require("./sectionRoutes");
 
 router.use("/:pageId/sections", sectionRouter);
 
-router.route("/").get(getAllPages).post(
-  setProjectId,
-  // uploadScreenShot,
-  // upload.array("screenShot"),
-  // uploadScreenShotInCloud,
-  createPage
-);
+router
+  .route("/")
+  .get(getAllPages)
+  .post(
+    uploadScreenShots,
+    uploadScreenShotsOnCloudinary,
+    setProjectId,
+    createPage
+  );
 router.route("/:id").get(getPage).patch(updatePage).delete(deletePage);
 
 module.exports = router;

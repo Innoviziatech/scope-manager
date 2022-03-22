@@ -17,7 +17,7 @@ const SinglePage = () => {
     const fetchPage = async () => {
       try {
         const res = await axios(
-          `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}`
+          `${process.env.REACT_APP_API_URL}/sm/api/pages/${pageId}`
         );
         console.log(res);
         setSections(res.data.doc.sections);

@@ -19,7 +19,7 @@ const AddSectionForm = () => {
     else if (page === "selector") setSelectorloading(true);
     try {
       const res = await axios.post(
-        `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}/sections`,
+        `${process.env.REACT_APP_API_URL}/sm/api/pages/${pageId}/sections`,
         {
           sectionName,
           description,

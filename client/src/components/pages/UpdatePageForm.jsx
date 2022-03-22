@@ -3,7 +3,6 @@ import Stepper from "../stepper/Stepper";
 import Switch from "@mui/material/Switch";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
-import UploadScreenShot from "../custombuttons/UploadScreenShot";
 import { useNavigate, useParams } from "react-router-dom";
 import { BsCheckLg } from "react-icons/bs";
 
@@ -24,7 +23,7 @@ const UpdatePageForm = () => {
     const fetchPage = async () => {
       try {
         const res = await axios(
-          `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}`
+          `${process.env.REACT_APP_API_URL}/sm/api/pages/${pageId}`
         );
         console.log(res);
         setPageName(res.data.doc.pageName);
@@ -40,7 +39,7 @@ const UpdatePageForm = () => {
   const handleSubmit = async (page) => {
     try {
       const res = await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/pages/${pageId}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/pages/${pageId}`,
         {
           pageName,
           pageSequence,
@@ -112,12 +111,12 @@ const UpdatePageForm = () => {
           </div>
         </div>
 
-        <div className="row flex-between">
+        {/* <div className="row flex-between">
           <UploadScreenShot
             title="Upload"
             onClick={() => console.log("screen shot")}
           />
-        </div>
+        </div> */}
         <div className="row flex-between" style={{ marginTop: "6rem" }}>
           <span></span>
           <button

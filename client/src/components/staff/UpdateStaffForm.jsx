@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -24,7 +23,7 @@ const UpdateStaffForm = () => {
         const {
           data: { doc },
         } = await axios(
-          `https://scope-manager.herokuapp.com/sm/api/staff/${staffId}`
+          `${process.env.REACT_APP_API_URL}/sm/api/staff/${staffId}`
         );
         setName(doc.name);
         setEmail(doc.email);
@@ -43,7 +42,7 @@ const UpdateStaffForm = () => {
       const {
         data: { doc },
       } = await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/staff/${staffId}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/staff/${staffId}`,
         {
           name,
           role,

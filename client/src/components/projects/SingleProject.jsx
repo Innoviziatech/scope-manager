@@ -20,7 +20,7 @@ const SingleProject = () => {
     const fetchProject = async () => {
       try {
         const res = await axios(
-          `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`
+          `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}`
         );
         setStatus(res.data.doc.status);
         setPages(res.data.doc.pages);
@@ -35,7 +35,7 @@ const SingleProject = () => {
     setStatus(!status);
     try {
       await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}`,
         {
           status: !status,
         }

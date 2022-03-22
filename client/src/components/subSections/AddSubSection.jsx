@@ -16,7 +16,7 @@ const AddSubSection = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}/subSections`,
+        `${process.env.REACT_APP_API_URL}/sm/api/sections/${sectionId}/subSections`,
         {
           subSection,
           description,

@@ -18,7 +18,7 @@ const TaskManager = () => {
     const fetchTasks = async () => {
       try {
         const res = await axios(
-          "https://scope-manager.herokuapp.com/sm/api/tasks"
+          `${process.env.REACT_APP_API_URL}/sm/api/tasks`
         );
         setTasks(res.data.docs);
       } catch (err) {
@@ -34,12 +34,9 @@ const TaskManager = () => {
 
   const handleUpdate = async (taskStatus, id) => {
     try {
-      await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/tasks/${id}`,
-        {
-          status: !taskStatus,
-        }
-      );
+      await axios.patch(`${process.env.REACT_APP_API_URL}/sm/api/tasks/${id}`, {
+        status: !taskStatus,
+      });
     } catch (err) {
       console.log(err.response.data.message);
     }
@@ -47,9 +44,7 @@ const TaskManager = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(
-        `https://scope-manager.herokuapp.com/sm/api/tasks/${id}`
-      );
+      await axios.delete(`${process.env.REACT_APP_API_URL}/sm/api/tasks/${id}`);
       setRefetch(true);
     } catch (err) {
       console.log(err.response.data.message);

@@ -18,7 +18,7 @@ const ClientManager = () => {
     const fetchClients = async () => {
       try {
         const res = await axios(
-          "https://scope-manager.herokuapp.com/sm/api/clients"
+          `${process.env.REACT_APP_API_URL}/sm/api/clients`
         );
         setClients(res.data.docs);
       } catch (err) {
@@ -34,7 +34,7 @@ const ClientManager = () => {
   const handleUpdate = async (clientStatus, id) => {
     try {
       await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/clients/${id}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/clients/${id}`,
         {
           status: !clientStatus,
         }
@@ -46,7 +46,7 @@ const ClientManager = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://scope-manager.herokuapp.com/sm/api/clients/${id}`
+        `${process.env.REACT_APP_API_URL}/sm/api/clients/${id}`
       );
       setRefetch(true);
     } catch (err) {

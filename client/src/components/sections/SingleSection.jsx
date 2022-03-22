@@ -16,7 +16,7 @@ const SingleSection = () => {
     const fetchPage = async () => {
       try {
         const res = await axios(
-          `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}`
+          `${process.env.REACT_APP_API_URL}/sm/api/sections/${sectionId}`
         );
         setSelectors(res.data.doc.selectors);
       } catch (err) {

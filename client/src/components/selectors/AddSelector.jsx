@@ -15,7 +15,7 @@ const AddSelectorForm = ({ section }) => {
   const handleSubmitSection = async (page) => {
     try {
       const res = await axios.post(
-        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}/selectors`,
+        `${process.env.REACT_APP_API_URL}/sm/api/sections/${sectionId}/selectors`,
         {
           prefferedInput,
           prefferedOutput,
@@ -34,7 +34,7 @@ const AddSelectorForm = ({ section }) => {
   // const handleSubmitSubSection = async (page) => {
   //   try {
   //     const res = await axios.post(
-  //       `https://scope-manager.herokuapp.com/sm/api/subSections/${subSectionId}/selectors`,
+  //       `${process.env.REACT_APP_API_URL}/sm/api/subSections/${subSectionId}/selectors`,
   //       {
   //         prefferedInput,
   //         prefferedOutput,

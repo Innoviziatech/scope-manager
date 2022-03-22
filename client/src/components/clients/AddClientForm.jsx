@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Stepper from "../stepper/Stepper";
 import "./client.css";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import Switch from "@mui/material/Switch";
 import { BsChevronDown } from "react-icons/bs";
 import PageHeader from "../pageHeader/PageHeader";
@@ -30,7 +29,7 @@ const AddClientForm = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       const res = await axios(
-        "https://scope-manager.herokuapp.com/sm/api/projects"
+        `${process.env.REACT_APP_API_URL}/sm/api/projects`
       );
       setProjects(res.data.docs);
       const projectArray = res.data.docs.map((project) => ({
@@ -65,7 +64,7 @@ const AddClientForm = () => {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        "https://scope-manager.herokuapp.com/sm/api/clients",
+        `${process.env.REACT_APP_API_URL}/sm/api/clients`,
         {
           clientName,
           projects: clientProjects,

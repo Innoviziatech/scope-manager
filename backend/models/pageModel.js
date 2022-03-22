@@ -17,7 +17,12 @@ const pageSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    screenShots: [String],
+    screenShots: [
+      {
+        public_id: String,
+        url: String,
+      },
+    ],
     project: {
       type: mongoose.Schema.ObjectId,
       ref: "Project",

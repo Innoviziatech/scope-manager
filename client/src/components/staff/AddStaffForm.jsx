@@ -16,7 +16,7 @@ const AddStaffForm = () => {
   const handleSubmit = async () => {
     try {
       const res = await axios.post(
-        "https://scope-manager.herokuapp.com/sm/api/staff",
+        `${process.env.REACT_APP_API_URL}/sm/api/staff`,
         {
           name,
           role,

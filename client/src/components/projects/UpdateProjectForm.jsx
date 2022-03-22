@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
 import Switch from "@mui/material/Switch";
 import { BsChevronDown, BsPlusLg } from "react-icons/bs";
 import PageHeader from "../pageHeader/PageHeader";
@@ -29,9 +28,8 @@ const UpdateProjectForm = () => {
   useEffect(() => {
     const fetchProject = async () => {
       const res = await axios(
-        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`
+        `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}`
       );
-      console.log(res);
       setProject(res.data.doc);
       setProjectName(res.data.doc.projectName);
       setDescription(res.data.doc.description);
@@ -43,7 +41,7 @@ const UpdateProjectForm = () => {
   useEffect(() => {
     const fetchClients = async () => {
       const res = await axios(
-        "https://scope-manager.herokuapp.com/sm/api/clients"
+        `${process.env.REACT_APP_API_URL}/sm/api/clients`
       );
       setClients(res.data.docs);
 
@@ -58,9 +56,7 @@ const UpdateProjectForm = () => {
   }, []);
   useEffect(() => {
     const fetchStaff = async () => {
-      const res = await axios(
-        "https://scope-manager.herokuapp.com/sm/api/staff"
-      );
+      const res = await axios(`${process.env.REACT_APP_API_URL}/sm/api/staff`);
       setStaff(res.data.docs);
       const staffObj = res.data.docs.map((staff) => ({
         [staff.name]: false,
@@ -123,7 +119,7 @@ const UpdateProjectForm = () => {
 
     try {
       const res = await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/projects/${projectId}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}`,
         {
           projectName,
           clients: projectClients,
@@ -131,6 +127,7 @@ const UpdateProjectForm = () => {
           status,
         }
       );
+
       setProject(res.data.doc);
       setProjectName(res.data.data.projectName);
       setStatus(res.data.data.status);

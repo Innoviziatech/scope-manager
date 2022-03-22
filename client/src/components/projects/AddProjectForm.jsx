@@ -26,7 +26,7 @@ const AddProjectForm = () => {
   useEffect(() => {
     const fetchClients = async () => {
       const res = await axios(
-        "https://scope-manager.herokuapp.com/sm/api/clients"
+        `${process.env.REACT_APP_API_URL}/sm/api/clients`
       );
       setClients(res.data.docs);
 
@@ -45,9 +45,7 @@ const AddProjectForm = () => {
   }, []);
   useEffect(() => {
     const fetchStaff = async () => {
-      const res = await axios(
-        "https://scope-manager.herokuapp.com/sm/api/staff"
-      );
+      const res = await axios(`${process.env.REACT_APP_API_URL}/sm/api/staff`);
       setStaff(res.data.docs);
       const staffObj = res.data.docs.map((staff) => ({
         [staff.name]: false,
@@ -96,7 +94,7 @@ const AddProjectForm = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://scope-manager.herokuapp.com/sm/api/projects",
+        `${process.env.REACT_APP_API_URL}/sm/api/projects`,
         {
           projectName,
           description,

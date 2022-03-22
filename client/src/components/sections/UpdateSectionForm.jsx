@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import Stepper from "../stepper/Stepper";
-import ReactMultiSelectCheckboxes from "react-multiselect-checkboxes";
-
 import PageHeader from "../pageHeader/PageHeader";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,7 +17,7 @@ const AddSectionForm = () => {
   useEffect(() => {
     const fetchSection = async () => {
       const res = await axios(
-        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}`
+        `${process.env.REACT_APP_API_URL}/sm/api/sections/${sectionId}`
       );
       setSectionName(res.data.doc.sectionName);
       setDescription(res.data.doc.description);
@@ -32,7 +30,7 @@ const AddSectionForm = () => {
     else if (page === "selector") setLoading(true);
     try {
       const res = await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/sections/${sectionId}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/sections/${sectionId}`,
         {
           sectionName,
           description,

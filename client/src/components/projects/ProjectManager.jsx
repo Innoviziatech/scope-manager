@@ -18,7 +18,7 @@ const ProjectManager = () => {
     const fetchProjects = async () => {
       try {
         const res = await axios(
-          "https://scope-manager.herokuapp.com/sm/api/projects"
+          `${process.env.REACT_APP_API_URL}/sm/api/projects`
         );
         setProjects(res.data.docs);
       } catch (err) {
@@ -35,7 +35,7 @@ const ProjectManager = () => {
   const handleUpdate = async (projectStatus, id) => {
     try {
       await axios.patch(
-        `https://scope-manager.herokuapp.com/sm/api/projects/${id}`,
+        `${process.env.REACT_APP_API_URL}/sm/api/projects/${id}`,
         {
           status: !projectStatus,
         }
@@ -47,7 +47,7 @@ const ProjectManager = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete(
-        `https://scope-manager.herokuapp.com/sm/api/projects/${id}`
+        `${process.env.REACT_APP_API_URL}/sm/api/projects/${id}`
       );
       setRefetch(true);
     } catch (err) {
