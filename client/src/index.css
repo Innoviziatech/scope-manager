@@ -130,13 +130,27 @@ textarea {
 .css-1jllj6i-control {
   display: none !important;
 }
-.preview__images {
+.preview__images,
+.preview__images-2 {
   overflow-x: scroll;
 }
 .preview__images img {
-  max-height: 30rem !important;
+  max-height: 20rem !important;
   object-fit: contain;
 }
+.preview__images img:not(:last-child),
+.preview__images-2 img:not(:last-child) {
+  margin-right: 2rem;
+}
+.preview__images-2 {
+  min-width: fit-content;
+}
+
+.preview__images-2 img {
+  max-height: 10rem !important;
+  object-fit: contain;
+}
+
 @media only screen and (max-width: 75em) {
   html {
     font-size: 50%;

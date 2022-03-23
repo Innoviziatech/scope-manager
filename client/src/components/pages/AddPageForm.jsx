@@ -17,7 +17,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "50%",
+  width: "70%",
+  height: "70%",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -28,8 +29,8 @@ const AddPageForm = () => {
   const [pageURL, setPageURL] = useState("");
   const [pageSequence, setPageSequence] = useState("");
   const [pageName, setPageName] = useState("");
-  const [previewImgs, setPreviewImgs] = useState([]);
-  const [selectedImgs, setSelectedImgs] = useState([]);
+  const [previewImg, setPreviewImg] = useState([]);
+  const [screenshots, setScreenshots] = useState([]);
   const [loading, setLoading] = useState(false);
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -38,44 +39,42 @@ const AddPageForm = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const handleUpload = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   if (selectedImg) formData.append("screenShots", selectedImg);
-  // };
-  const previewFile = (file) => {
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setPreviewImgs(reader.result);
-      };
-    }
-  };
-
   const handlePictureSelection = (e) => {
-    const file = e.target.files[0];
-    setPreviewImgs(file);
+    const files = Array.from(e.target.files);
 
-    previewFile(file);
+    setPreviewImg([]);
+    setScreenshots([]);
 
-    // setSelectedImg(file);
-  };
-  console.log(selectedImgs);
-  const handleChange = (event) => {
-    setStatus(event.target.checked);
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setPreviewImg((oldArray) => [...oldArray, reader.result]);
+          setScreenshots((oldArray) => [...oldArray, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
   };
 
   const handleSubmit = async (page) => {
+    const formData = new FormData();
+
+    formData.set("pageName", pageName);
+    formData.set("pageSequence", pageSequence);
+    formData.set("pageURL", pageURL);
+    formData.set("status", status);
+
+    screenshots.forEach((image) => {
+      formData.set("screenShots", image);
+    });
+    setLoading(true);
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}/pages`,
-        {
-          pageName,
-          pageSequence,
-          pageURL,
-          status,
-        }
+        formData
       );
       if (res.data.status === "success") {
         setLoading(false);
@@ -85,6 +84,7 @@ const AddPageForm = () => {
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
     }
 
     setPageURL("");
@@ -92,6 +92,7 @@ const AddPageForm = () => {
     setStatus(false);
     setPageName("");
   };
+
   return (
     <div className="addClient">
       <PageHeader title="Add Page" back />
@@ -100,7 +101,7 @@ const AddPageForm = () => {
         icon="add"
         page="project"
         submit={handleSubmit}
-        move="move"
+        move={!loading && "move"}
       />
       <div className="addClient-inputs">
         <div className="row flex-between">
@@ -124,7 +125,7 @@ const AddPageForm = () => {
             <label>Status</label>
             <Switch
               checked={status}
-              onChange={handleChange}
+              onChange={(event) => setStatus(event.target.checked)}
               inputProps={{ "aria-label": "controlled" }}
               style={{ color: "#ec4154" }}
             />
@@ -166,10 +167,11 @@ const AddPageForm = () => {
               <Box sx={style}>
                 <input
                   type="file"
+                  name="screenShots"
                   id="upload-screenshot"
-                  accept="image/*"
                   style={{ display: "none" }}
                   onChange={handlePictureSelection}
+                  multiple
                 />
                 <div className="row flex-between">
                   <label htmlFor="upload-screenshot">
@@ -183,10 +185,10 @@ const AddPageForm = () => {
                     </div>
                   </label>
                 </div>
-                <div className="preview__images">
-                  {/* {selectedImgs?.map((previewImg) => ( */}
-                  <img src={previewImgs} alt="" />
-                  {/* ))} */}
+                <div className="preview__images flex">
+                  {previewImg.map((preview) => (
+                    <img key={preview} src={preview} alt="" />
+                  ))}
                 </div>
               </Box>
             </Fade>

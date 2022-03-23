@@ -22,6 +22,7 @@ const SingleProject = () => {
         const res = await axios(
           `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}`
         );
+        console.log(res);
         setStatus(res.data.doc.status);
         setPages(res.data.doc.pages);
       } catch (err) {

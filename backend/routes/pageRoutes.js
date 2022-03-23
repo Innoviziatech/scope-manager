@@ -16,12 +16,11 @@ router.use("/:pageId/sections", sectionRouter);
 router
   .route("/")
   .get(getAllPages)
-  .post(
-    uploadScreenShots,
-    uploadScreenShotsOnCloudinary,
-    setProjectId,
-    createPage
-  );
-router.route("/:id").get(getPage).patch(updatePage).delete(deletePage);
+  .post(setProjectId, uploadScreenShotsOnCloudinary, createPage);
+router
+  .route("/:id")
+  .get(getPage)
+  .patch(uploadScreenShotsOnCloudinary, updatePage)
+  .delete(deletePage);
 
 module.exports = router;

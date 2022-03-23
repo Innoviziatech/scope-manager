@@ -9,6 +9,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const rateLimit = require("express-rate-limit");
 const cookieparser = require("cookie-parser");
+const fileupload = require("express-fileupload");
 
 const AppError = require("./utils/appError");
 const GlobalErrorHandler = require("./controllers/errorController");
@@ -54,6 +55,8 @@ app.use("/sm/api", limiter);
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieparser());
+
+app.use(fileupload());
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
