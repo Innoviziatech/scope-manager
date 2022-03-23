@@ -20,7 +20,7 @@ router
 router
   .route("/:id")
   .get(getPage)
-  .patch(uploadScreenShotsOnCloudinary, updatePage)
+  .put(uploadScreenShotsOnCloudinary, updatePage)
   .delete(deletePage);
 
 module.exports = router;

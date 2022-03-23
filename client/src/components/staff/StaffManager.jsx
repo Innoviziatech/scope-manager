@@ -44,14 +44,14 @@ const StaffManager = () => {
       <div className="table-container center">
         <Table hover size="sm" className="table center">
           <thead>
-            {/* <tr> */}
-            <th>Sr. No.</th>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Role</th>
-            <th>Email</th>
-            <th>Action</th>
-            {/* </tr> */}
+            <tr>
+              <th>Sr. No.</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {staff &&

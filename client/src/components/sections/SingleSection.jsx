@@ -45,13 +45,13 @@ const SingleSection = () => {
       <div className="table-container center">
         <Table hover size="sm" className="table center">
           <thead>
-            {/* <tr> */}
-            <th>Sr. No.</th>
-            <th>Name of the Selector</th>
-            <th>Preffered Input</th>
-            <th>Preffered Output</th>
-            <th>Action</th>
-            {/* </tr> */}
+            <tr>
+              <th>Sr. No.</th>
+              <th>Name of the Selector</th>
+              <th>Preffered Input</th>
+              <th>Preffered Output</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {selectors &&

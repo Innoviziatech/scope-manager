@@ -58,18 +58,18 @@ const TaskManager = () => {
       <div className="table-container center">
         <Table hover size="sm" className="table center">
           <thead>
-            {/* <tr> */}
-            <th>Sr. No.</th>
-            <th>Project</th>
-            <th>Due Date</th>
-            <th>Responsibility</th>
-            <th>Min</th>
-            <th>Max</th>
-            <th>Category</th>
-            <th>TT</th>
-            <th>Status</th>
-            <th>Action</th>
-            {/* </tr> */}
+            <tr>
+              <th>Sr. No.</th>
+              <th>Project</th>
+              <th>Due Date</th>
+              <th>Responsibility</th>
+              <th>Min</th>
+              <th>Max</th>
+              <th>Category</th>
+              <th>TT</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {tasks &&

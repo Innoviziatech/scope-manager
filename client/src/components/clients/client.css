@@ -135,8 +135,9 @@ tr {
   font-weight: 400;
 }
 
-thead {
+thead tr {
   color: var(--color-gray-1);
+  background-color: transparent;
 }
 td {
   text-align: center;

@@ -138,6 +138,10 @@ textarea {
   max-height: 20rem !important;
   object-fit: contain;
 }
+.preview__images-3 img {
+  max-height: 8rem !important;
+  object-fit: contain;
+}
 .preview__images img:not(:last-child),
 .preview__images-2 img:not(:last-child) {
   margin-right: 2rem;
@@ -151,6 +155,9 @@ textarea {
   object-fit: contain;
 }
 
+.singleProject .table-container {
+  margin-top: 2rem !important;
+}
 @media only screen and (max-width: 75em) {
   html {
     font-size: 50%;

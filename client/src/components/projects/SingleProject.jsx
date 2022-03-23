@@ -14,6 +14,9 @@ const SingleProject = () => {
   const [refetch, setRefetch] = useState(false);
   const [status, setStatus] = useState(false);
   const { projectName, projectId } = useParams();
+  const [previewImg, setPreviewImg] = useState([]);
+  const [pageId, setPageId] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +25,7 @@ const SingleProject = () => {
         const res = await axios(
           `${process.env.REACT_APP_API_URL}/sm/api/projects/${projectId}`
         );
-        console.log(res);
+
         setStatus(res.data.doc.status);
         setPages(res.data.doc.pages);
       } catch (err) {
@@ -31,6 +34,38 @@ const SingleProject = () => {
     };
     fetchProject();
   }, [projectId, refetch]);
+  console.log(pageId);
+
+  const handlePictureSelection = async (e) => {
+    const files = Array.from(e.target.files);
+
+    setPreviewImg([]);
+
+    files.forEach((file) => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setPreviewImg((oldArray) => [...oldArray, reader.result]);
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    const formData = new FormData();
+    formData.set("screenShots", previewImg);
+
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/sm/api/pages/${pageId}`,
+        formData
+      );
+      // setPreviewImg([]);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
 
   const handleUpdate = async () => {
     setStatus(!status);
@@ -48,20 +83,24 @@ const SingleProject = () => {
   };
 
   return (
-    <div className="addClient">
+    <div className="singleProject">
       <PageHeader title={projectName} back />
       <Stepper title="Add New Page" icon="save" page={`page/${projectId}`} />
+
+      <div className="preview__images-3">
+        <img src={previewImg} alt="" />
+      </div>
 
       <div className="table-container center">
         <Table hover size="sm" className="table center">
           <thead>
-            {/* <tr> */}
-            <th>Sr. No.</th>
-            <th>Name of the Page</th>
-            <th>ScreenShot</th>
-            <th>Status</th>
-            <th>Action</th>
-            {/* </tr> */}
+            <tr>
+              <th>Sr. No.</th>
+              <th>Name of the Page</th>
+              <th>ScreenShot</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {pages &&
@@ -76,17 +115,28 @@ const SingleProject = () => {
                   >
                     {page.pageName}
                   </td>
-                  <td>
-                    <span
-                      style={{ padding: "6px 10px" }}
-                      className="taskManager__icons"
-                    >
-                      <BsImage
-                        fontSize="large"
-                        style={{ marginRight: "10px" }}
-                      />
-                      <BiUpload fontSize="large" />
-                    </span>{" "}
+                  <td onClick={() => setPageId(page.id)}>
+                    <input
+                      type="file"
+                      name="screenShots"
+                      id="upload-screenshot"
+                      style={{ display: "none" }}
+                      onChange={handlePictureSelection}
+                    />
+
+                    <label htmlFor="upload-screenshot">
+                      <span
+                        style={{ padding: "6px 10px" }}
+                        className="taskManager__icons"
+                      >
+                        <BsImage
+                          fontSize="large"
+                          style={{ marginRight: "10px" }}
+                        />
+
+                        <BiUpload fontSize="large" />
+                      </span>{" "}
+                    </label>
                   </td>
 
                   <td>
